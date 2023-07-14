@@ -14,4 +14,4 @@ print(f"Adding income data...",end='',flush=True)
 zipcodes = zipcodes.join(income,how="inner",on="zipcode",sort=True)
 print("ok",flush=True)
 
-zipcodes.to_csv('C:\Users\isabe\OneDrive\Documents\SLAC Summer Internship '23\GitHub\resilience\incomes.csv')
+zipcodes.to_csv('incomes_result.csv', index=False)

@@ -2,8 +2,8 @@ import pandas as pd
 import subprocess
 
 # Provide your latitude, longitude
-latitude = pd.read_csv('latitude.csv')
-longitude = pd.read_csv('longitude.csv')
+latitude = pd.read_csv('latitude.csv')['latitude'].tolist()
+longitude = pd.read_csv('longitude.csv')['longitude'].tolist()
 
 command = 'gridlabd geodata merge -D census {} -o $OPENFIDO_OUTPUT/test_zipcode.csv'
 

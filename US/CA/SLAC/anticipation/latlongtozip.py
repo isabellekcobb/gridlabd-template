@@ -18,9 +18,9 @@ def get_zipcode(latitude, longitude, api_key):
         return None
 
 # Provide your latitude, longitude, and API key
-latitude = 37.7749
-longitude = -122.4194
+latitude = 'latitude.csv'
+longitude = 'longitude.csv'
 api_key = '580e79eccf33456f9cc0328c5729fa25'
 
 zipcode = get_zipcode(latitude, longitude, api_key)
-print(zipcode)
+zipcode.to_csv('test_zipcode.csv', index=False)

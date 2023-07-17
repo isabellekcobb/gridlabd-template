@@ -1,5 +1,5 @@
-import requests
 import pandas as pd
+import subprocess
 
 # Provide your latitude, longitude
 latitude = pd.read_csv('latitude.csv')

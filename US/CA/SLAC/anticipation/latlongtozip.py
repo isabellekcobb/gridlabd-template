@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import subprocess
 
@@ -7,7 +8,11 @@ longitude = pd.read_csv('longitude.csv')['longitude'].tolist()
 
 command = 'gridlabd geodata merge -D census {}'
 
-output_file = '$OPENFIDO_OUTPUT/test_zipcode.csv'
+output_directory = '$OPENFIDO_OUTPUT'
+output_file = 'test_zipcode.csv'
+
+# Create the output directory if it doesn't exist
+os.makedirs(output_directory, exist_ok=True)
 
 # Iterate over latitude and longitude pairs and execute the census subcommand for each
 for lat, lon in zip(latitude, longitude):
@@ -18,5 +23,6 @@ for lat, lon in zip(latitude, longitude):
     command_output = completed_process.stdout
     
     # Append the output to the output file
-    with open(output_file, 'a') as file:
+    output_path = os.path.join(output_directory, output_file)
+    with open(output_path, 'a') as file:
         file.write(command_output)

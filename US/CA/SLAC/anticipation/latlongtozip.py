@@ -18,8 +18,8 @@ def get_zipcode(latitude, longitude, api_key):
         return None
 
 # Provide your latitude, longitude, and API key
-latitude = 'latitude.csv'
-longitude = 'longitude.csv'
+latitude = pd.read_csv('latitude.csv')
+longitude = pd.read_csv('longitude.csv')
 api_key = '580e79eccf33456f9cc0328c5729fa25'
 
 zipcode = get_zipcode(latitude, longitude, api_key)

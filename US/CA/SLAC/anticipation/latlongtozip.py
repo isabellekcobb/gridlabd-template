@@ -22,5 +22,4 @@ longitude = -122.4194
 api_key = '9zS25U1TomaV3vQzgiAexB8eVaNV02HrrcmtBm0q'
 
 zipcode = get_zipcode(latitude, longitude, api_key)
-if zipcode:
-    print(f'The zip code for the given latitude and longitude is {zipcode}.')
+zipcode.to_csv('test_zipcode.csv', index=False)

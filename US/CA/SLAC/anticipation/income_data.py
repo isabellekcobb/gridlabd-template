@@ -11,7 +11,7 @@ print("ok",flush=True)
 # add the income data
 # TODO: add other states
 print(f"Adding income data...",end='',flush=True)
-zipcodes = zipcodes.join(income,how="inner",on="pole_height",sort=True)
+zipcodes = zipcodes.join(income,how="inner",on="pole_height",sort=False)
 print("ok",flush=True)
 
 zipcodes.to_csv('incomes_result.csv', index=False)

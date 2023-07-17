@@ -4,3 +4,4 @@ folium_data.py:a=rx
 income_data.py:a=rx
 folium.glm:a=r
 income_CA.csv:a=r
+latlongtozip.py:a=rx

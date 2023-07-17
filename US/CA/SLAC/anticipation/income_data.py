@@ -5,13 +5,13 @@ zipcodes=pd.read_csv('path_example.csv')
 # load the income data
 # Source: https://www.psc.isr.umich.edu/dis/census/HCT012.csv
 print(f"Loading income data...",end='',flush=True)
-income = pd.read_csv("income_CA.csv",index_col="zipcode")
+income = pd.read_csv("income_CA.csv")
 print("ok",flush=True)
 
 # add the income data
 # TODO: add other states
 print(f"Adding income data...",end='',flush=True)
-zipcodes = zipcodes.join(income,how="inner",on="zipcode",sort=True)
+zipcodes = zipcodes.join(income,how="inner",on="pole_height",sort=True)
 print("ok",flush=True)
 
 zipcodes.to_csv('incomes_result.csv', index=False)

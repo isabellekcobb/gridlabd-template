@@ -23,6 +23,4 @@ longitude = -122.4194
 api_key = '580e79eccf33456f9cc0328c5729fa25'
 
 zipcode = get_zipcode(latitude, longitude, api_key)
-
-zipCSV = pd.read_csv(pd.compat.StringIO(zipcode))
-zipCSV.to_csv('test_zipcode.csv', index=False)
+zipcode.to_txt('test_zipcode.txt', index=False)

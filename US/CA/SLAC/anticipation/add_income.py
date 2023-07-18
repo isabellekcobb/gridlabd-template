@@ -36,7 +36,7 @@ with open(filename, 'w', newline='') as file:
     writer.writerows(results)
 
 # Create DataFrame from the results
-df = pd.DataFrame(results, columns=["Latitude", "Longitude", "Zip Code"])
+df = pd.DataFrame(results, columns=["latitude", "longitude", "zip code"])
 
 # Read income data from CSV file
 income = pd.read_csv("income_CA.csv")

@@ -1,6 +1,7 @@
 import csv
 import pandas as pd
 import requests
+import time
 from geopy.geocoders import Nominatim
 
 # Function to convert latitude and longitude to zip code

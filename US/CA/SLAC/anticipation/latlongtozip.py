@@ -25,7 +25,7 @@ for lat, lon in coordinates:
 
 # Export results to a CSV file
 filename = "zipcode_results.csv"
-header = ["latitude", "longitude", "Zip Code"]
+header = ["latitude", "longitude", "zip Code"]
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(header)

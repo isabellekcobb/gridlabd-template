@@ -2,17 +2,19 @@ import csv
 import pandas as pd
 import requests
 
-def get_zipcode(lat, lon):
-    url = f"https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}"
-    response = requests.get(url)
-
+def get_zipcode_geonames(lat, lon):
+    username = 'isabellekcobb'  # Replace with your GeoNames username
+    base_url = f'http://api.geonames.org/findNearbyPostalCodesJSON?lat={lat}&lng={lon}&username={username}'
+    
+    response = requests.get(base_url)
+    
     if response.status_code == 200:
         data = response.json()
-        if 'address' in data:
-            address = data['address']
-            if 'postcode' in address:
-                return address['postcode']
-
+        if 'postalCodes' in data:
+            postal_codes = data['postalCodes']
+            if postal_codes:
+                return postal_codes[0]['postalCode']
+    
     return ""
 
 # Read latitude and longitude from CSV files

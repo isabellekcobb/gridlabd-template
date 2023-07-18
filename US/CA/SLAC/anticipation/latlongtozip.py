@@ -1,16 +1,34 @@
+import csv
 import pandas as pd
-import subprocess
+from geopy.geocoders import Nominatim
 
-# Provide your latitude, longitude
-latitude = pd.read_csv('latitude.csv')['latitude'].tolist()
-longitude = pd.read_csv('longitude.csv')['longitude'].tolist()
+# Function to convert latitude and longitude to zip code
+def get_zipcode(lat, lon):
+    geolocator = Nominatim(user_agent="zipcode_converter")
+    location = geolocator.reverse((lat, lon), exactly_one=True)
+    address = location.raw['address']
+    zipcode = address.get('postcode', '')
+    return zipcode
 
-command = 'gridlabd geodata merge -D census {}'
+# Read latitude and longitude from CSV files
+latitude = pd.read_csv('latitude.csv')
+longitude = pd.read_csv('longitude.csv')
 
-output_file = '/path/to/output/test_zipcode.csv'
+# Combine latitude and longitude into a coordinates array
+coordinates = list(zip(latitude['Latitude'], longitude['Longitude']))
 
-# Iterate over latitude and longitude pairs and execute the census subcommand for each
-for lat, lon in zip(latitude, longitude):
-    formatted_command = command.format(f'{lat},{lon}')
-    subprocess.run(formatted_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-    print(f'Output appended for latitude: {lat}, longitude: {lon}')
+# Convert coordinates to zip codes
+results = []
+for lat, lon in coordinates:
+    zipcode = get_zipcode(lat, lon)
+    results.append((lat, lon, zipcode))
+
+# Export results to a CSV file
+filename = "zipcode_results.csv"
+header = ["Latitude", "Longitude", "Zip Code"]
+with open(filename, 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(header)
+    writer.writerows(results)
+
+print(f"Data exported to '{filename}' successfully.")

@@ -11,8 +11,8 @@ def get_zipcode(lat, lon):
     return zipcode
 
 # Read latitude and longitude from CSV files
-latitude = pd.read_csv('latitude.csv')
-longitude = pd.read_csv('longitude.csv')
+latitude = pd.read_csv('Latitude.csv')
+longitude = pd.read_csv('Longitude.csv')
 
 # Combine latitude and longitude into a coordinates array
 coordinates = list(zip(latitude['Latitude'], longitude['Longitude']))

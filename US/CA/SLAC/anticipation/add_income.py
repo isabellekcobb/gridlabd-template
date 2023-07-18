@@ -4,7 +4,7 @@ import requests
 import subprocess
 import json
 
-def get_zipcode_gridlabd(lat, lon):
+def get_zipcode(lat, lon):
     cmd = f"geodata census -z {lat},{lon}"
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
     output, _ = process.communicate()

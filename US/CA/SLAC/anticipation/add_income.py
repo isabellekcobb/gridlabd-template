@@ -37,7 +37,7 @@ income = pd.read_csv("income_CA.csv")
 merged_df = pd.merge(df, income, on="zipcode", how="inner")
 
 # Export merged DataFrame to a CSV file
-filename = "merged_results.csv"
+filename = "income_results.csv"
 merged_df.to_csv(filename, index=False)
 
 print(f"Data exported to '{filename}' successfully.")

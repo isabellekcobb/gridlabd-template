@@ -1,15 +1,22 @@
 import csv
 import pandas as pd
-from geopy.geocoders import Nominatim
+import time
+from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 
 def get_zipcode(lat, lon):
     geolocator = Nominatim(user_agent="zipcode_converter")
-    location = geolocator.reverse((lat, lon), exactly_one=True)
+    location = None
     
-    if location is not None and 'address' in location.raw:
-        address = location.raw['address']
-        if 'postcode' in address:
-            return address['postcode']
+    while not location:
+        try:
+            location = geolocator.reverse((lat, lon), exactly_one=True)
+            if location is not None and 'address' in location.raw:
+                address = location.raw['address']
+                if 'postcode' in address:
+                    return address['postcode']
+        except (GeocoderTimedOut, GeocoderUnavailable):
+            # Retry after a delay
+            time.sleep(1)
     
     return ""
 

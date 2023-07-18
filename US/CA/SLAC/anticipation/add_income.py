@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 import requests
 
-def get_zipcode_geonames(lat, lon):
+def get_zipcode(lat, lon):
     username = 'isabellekcobb'  # Replace with your GeoNames username
     base_url = f'http://api.geonames.org/findNearbyPostalCodesJSON?lat={lat}&lng={lon}&username={username}'
     

@@ -28,27 +28,26 @@ for lat, lon in coordinates:
     results.append((lat, lon, zipcode))
 
 # Export results to a CSV file
-filename = "zipcode_results.csv"
+filename = "income_results.csv"
 header = ["latitude", "longitude", "zip code"]
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(header)
     writer.writerows(results)
 
-# load the income data
-# Source: https://www.psc.isr.umich.edu/dis/census/HCT012.csv
-print(f"Loading income data...",end='',flush=True)
+# Create DataFrame from the results
+df = pd.DataFrame(results, columns=["Latitude", "Longitude", "Zip Code"])
+
+# Read income data from CSV file
 income = pd.read_csv("income_CA.csv")
-print("ok",flush=True)
 
-zip_only=pd.read_csv('zipcode_results.csv')
+# Perform inner join on Zip Code to combine income data
+merged_df = pd.merge(df, income, on="zip code", how="inner")
 
-# add the income data
-# TODO: add other states
-print(f"Adding income data...",end='',flush=True)
-zip_income = zip_only.join(income,how="inner",on="zip code",sort=True)
-print("ok",flush=True)
+# Export merged DataFrame to a CSV file
+filename = "merged_results.csv"
+merged_df.to_csv(filename, index=False)
 
-zip_only.to_csv('income_result.csv', index=False)
+print(f"Data exported to '{filename}' successfully.")
 
 

@@ -1,24 +1,16 @@
 import csv
 import pandas as pd
-import time
-from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
+from geopy.geocoders import Nominatim
 
+print("imports working",flush=True)
+
+# Function to convert latitude and longitude to zip code
 def get_zipcode(lat, lon):
     geolocator = Nominatim(user_agent="zipcode_converter")
-    location = None
-    
-    while not location:
-        try:
-            location = geolocator.reverse((lat, lon), exactly_one=True)
-            if location is not None and 'address' in location.raw:
-                address = location.raw['address']
-                if 'postcode' in address:
-                    return address['postcode']
-        except (GeocoderTimedOut, GeocoderUnavailable):
-            # Retry after a delay
-            time.sleep(1)
-    
-    return ""
+    location = geolocator.reverse((lat, lon), exactly_one=True)
+    address = location.raw['address']
+    zipcode = address.get('postcode', '')
+    return zipcode
 
 # Read latitude and longitude from CSV files
 latitude = pd.read_csv('latitude.csv')
@@ -35,14 +27,6 @@ for lat, lon in coordinates:
         zipcode = 'N/A'  # Assign a default value for missing zip codes
     results.append((lat, lon, zipcode))
 
-# Export results to a CSV file
-filename = "zipcode_results.csv"
-header = ["Latitude", "Longitude", "Zip Code"]
-with open(filename, 'w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow(header)
-    writer.writerows(results)
-
 # Create DataFrame from the results
 df = pd.DataFrame(results, columns=["latitude", "longitude", "zipcode"])
 
@@ -57,5 +41,3 @@ filename = "merged_results.csv"
 merged_df.to_csv(filename, index=False)
 
 print(f"Data exported to '{filename}' successfully.")
-
-

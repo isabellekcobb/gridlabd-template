@@ -3,14 +3,16 @@ import pandas as pd
 import requests
 
 def get_zipcode(lat, lon):
-    url = f"https://geocode.xyz/{lat},{lon}?json=1&scantext=1"
+    url = f"https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}"
     response = requests.get(url)
-    
+
     if response.status_code == 200:
         data = response.json()
-        if "postal" in data:
-            return data["postal"]
-    
+        if 'address' in data:
+            address = data['address']
+            if 'postcode' in address:
+                return address['postcode']
+
     return ""
 
 # Read latitude and longitude from CSV files

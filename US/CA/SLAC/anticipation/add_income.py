@@ -1,21 +1,15 @@
 import csv
 import pandas as pd
-import requests
-import subprocess
-import json
+from geopy.geocoders import Nominatim
 
 def get_zipcode(lat, lon):
-    cmd = f"geodata census -z {lat},{lon}"
-    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
-    output, _ = process.communicate()
+    geolocator = Nominatim(user_agent="zipcode_converter")
+    location = geolocator.reverse((lat, lon), exactly_one=True)
     
-    if process.returncode == 0:
-        try:
-            data = json.loads(output)
-            zipcode = data["results"][0]["zip"]
-            return zipcode
-        except (ValueError, KeyError, IndexError):
-            pass
+    if location is not None and 'address' in location.raw:
+        address = location.raw['address']
+        if 'postcode' in address:
+            return address['postcode']
     
     return ""
 

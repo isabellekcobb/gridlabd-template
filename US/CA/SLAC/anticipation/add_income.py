@@ -1,16 +1,17 @@
 import csv
 import pandas as pd
-from geopy.geocoders import Nominatim
+import requests
 
-print("imports working",flush=True)
-
-# Function to convert latitude and longitude to zip code
 def get_zipcode(lat, lon):
-    geolocator = Nominatim(user_agent="zipcode_converter")
-    location = geolocator.reverse((lat, lon), exactly_one=True)
-    address = location.raw['address']
-    zipcode = address.get('postcode', '')
-    return zipcode
+    url = f"https://geocode.xyz/{lat},{lon}?json=1&scantext=1"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        if "postal" in data:
+            return data["postal"]
+    
+    return ""
 
 # Read latitude and longitude from CSV files
 latitude = pd.read_csv('latitude.csv')

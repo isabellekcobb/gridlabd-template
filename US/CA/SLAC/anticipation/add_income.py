@@ -28,6 +28,14 @@ for lat, lon in coordinates:
         zipcode = 'N/A'  # Assign a default value for missing zip codes
     results.append((lat, lon, zipcode))
 
+# Export results to a CSV file
+filename = "zipcode_results.csv"
+header = ["Latitude", "Longitude", "Zip Code"]
+with open(filename, 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(header)
+    writer.writerows(results)
+
 # Create DataFrame from the results
 df = pd.DataFrame(results, columns=["latitude", "longitude", "zipcode"])
 

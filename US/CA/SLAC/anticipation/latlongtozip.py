@@ -21,11 +21,13 @@ coordinates = list(zip(latitude['latitude'], longitude['longitude']))
 results = []
 for lat, lon in coordinates:
     zipcode = get_zipcode(lat, lon)
+    if not zipcode:
+        zipcode = 'N/A'  # Assign a default value for missing zip codes
     results.append((lat, lon, zipcode))
 
 # Export results to a CSV file
 filename = "zipcode_results.csv"
-header = ["latitude", "longitude", "zip Code"]
+header = ["latitude", "longitude", "zip code"]
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(header)

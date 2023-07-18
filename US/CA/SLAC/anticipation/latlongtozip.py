@@ -15,7 +15,7 @@ latitude = pd.read_csv('latitude.csv')
 longitude = pd.read_csv('longitude.csv')
 
 # Combine latitude and longitude into a coordinates array
-coordinates = list(zip(latitude['Latitude'], longitude['Longitude']))
+coordinates = list(zip(latitude['latitude'], longitude['longitude']))
 
 # Convert coordinates to zip codes
 results = []
@@ -25,7 +25,7 @@ for lat, lon in coordinates:
 
 # Export results to a CSV file
 filename = "zipcode_results.csv"
-header = ["Latitude", "Longitude", "Zip Code"]
+header = ["latitude", "longitude", "Zip Code"]
 with open(filename, 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(header)

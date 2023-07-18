@@ -49,6 +49,6 @@ print(f"Adding income data...",end='',flush=True)
 zip_income = zip_only.join(income,how="inner",on="zip code",sort=True)
 print("ok",flush=True)
 
-zip_income.to_csv('income_result.csv', index=False)
+zip_only.to_csv('income_result.csv', index=False)
 
 

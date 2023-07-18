@@ -1,18 +1,24 @@
 import csv
 import pandas as pd
+import time
+from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 
-# Import packages
-from uszipcode import SearchEngine
-search = SearchEngine(simple_zipcode=True)
-from uszipcode import Zipcode
-import numpy as np
-
-#Now to the real deal: the search function. This function can be #manually adapted to your needs (e.g., getting the full address instead of just ZIP codes)
-
-#define zipcode search function
-def get_zipcode(lat, long):
-    result = search.by_coordinates(lat = lat, lng = lon, returns = 1)
-    return result[0].zipcode
+def get_zipcode(lat, lon):
+    geolocator = Nominatim(user_agent="zipcode_converter")
+    location = None
+    
+    while not location:
+        try:
+            location = geolocator.reverse((lat, lon), exactly_one=True)
+            if location is not None and 'address' in location.raw:
+                address = location.raw['address']
+                if 'postcode' in address:
+                    return address['postcode']
+        except (GeocoderTimedOut, GeocoderUnavailable):
+            # Retry after a delay
+            time.sleep(1)
+    
+    return ""
 
 # Read latitude and longitude from CSV files
 latitude = pd.read_csv('latitude.csv')

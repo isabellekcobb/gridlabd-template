@@ -6,3 +6,4 @@ folium.glm:a=r
 income_CA.csv:a=r
 latlongtozip.py:a=rx
 add_income.py:a=rx
+testing_subcommand.py:a=rx

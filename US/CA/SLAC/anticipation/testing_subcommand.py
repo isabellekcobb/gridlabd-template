@@ -31,3 +31,18 @@ for lat, lon in coordinates:
     if not zipcode:
         zipcode = 'N/A'  # Assign a default value for missing zip codes
     results.append((lat, lon, zipcode))
+
+df = pd.DataFrame(results, columns=["latitude", "longitude", "zipcode"])
+
+# Read income data from CSV file
+income = pd.read_csv("income_CA.csv")
+
+# Perform inner join on Zip Code to combine income data
+merged_df = pd.merge(df, income, on="zipcode", how="inner")
+
+# Export merged DataFrame to a CSV file
+filename = "merged_results.csv"
+merged_df.to_csv(filename, index=False)
+
+print(f"Data exported to '{filename}' successfully.")
+

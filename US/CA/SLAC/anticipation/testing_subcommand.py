@@ -1,5 +1,6 @@
 import subprocess
 import csv
+import pandas as pd
 
 def gridlabd_geodata_merge(location1, location2, output_file):
     cmd = f"gridlabd geodata merge -D distance location {location1} {location2}"

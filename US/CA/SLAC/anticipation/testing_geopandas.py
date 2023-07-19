@@ -15,6 +15,6 @@ def get_zipcode_geopandas(lat, lon, shapefile_path):
 # Example usage:
 latitude = 37.41504514168805
 longitude = -122.2056472090359
-shapefile_path = "C:/Users/isabe/OneDrive/Documents/SLACSummerInternship2023/Data/USA_ZIP_Code_Boundaries.shp"
+shapefile_path = "USA_ZIP_Code_Boundaries.shp"
 zipcode = get_zipcode_geopandas(latitude, longitude, shapefile_path)
 print(f"Zip Code: {zipcode}")

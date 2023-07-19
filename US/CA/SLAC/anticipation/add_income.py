@@ -6,7 +6,7 @@ from geopy.geocoders import Nominatim
 # Function to convert latitude and longitude to zip code
 def get_zipcode(lat, lon):
     geolocator = Nominatim(user_agent="zipcode_converter")
-    time.sleep(2)  # Add a delay of 2 seconds
+    time.sleep(1)  # Add a delay of 1 second
     location = geolocator.reverse((lat, lon), exactly_one=True)
     address = location.raw['address']
     zipcode = address.get('postcode', '')

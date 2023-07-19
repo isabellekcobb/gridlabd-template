@@ -46,6 +46,8 @@ for lat, lon in coordinates:
         zipcode = 'N/A'  # Assign a default value for missing zip codes
     results.append((lat, lon, zipcode))
 
+results.to_csv('test.csv',index=False)
+
 # Create DataFrame from the results
 df = pd.DataFrame(results, columns=["latitude", "longitude", "zipcode"])
 

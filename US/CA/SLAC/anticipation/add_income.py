@@ -1,18 +1,27 @@
 import csv
 import pandas as pd
 from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 import time
 
-print("imports working",flush=True)
-
-# Function to convert latitude and longitude to zip code
 def get_zipcode(lat, lon):
-    geolocator = Nominatim(user_agent="zipcode_converter")
-    time.sleep(2)
-    location = geolocator.reverse((lat, lon), exactly_one=True)
-    address = location.raw['address']
-    zipcode = address.get('postcode', '')
-    return zipcode
+    geolocator = Nominatim(user_agent="zipcode_converter", timeout=10)  # Increased timeout to 10 seconds
+    retries = 5  # Maximum number of retries
+    location = None
+    
+    for _ in range(retries):
+        try:
+            location = geolocator.reverse((lat, lon), exactly_one=True)
+            if location is not None and 'address' in location.raw:
+                address = location.raw['address']
+                if 'postcode' in address:
+                    return address['postcode']
+        except (GeocoderTimedOut, GeocoderUnavailable):
+            # Retry after a delay
+            time.sleep(2)
+    
+    return ""
+
 
 # Read latitude and longitude from CSV files
 latitude = pd.read_csv('latitude.csv')

@@ -15,8 +15,18 @@ def gridlabd_geodata_merge(location1, location2, output_file):
     else:
         print("Error executing gridlabd geodata merge.")
 
-# Example usage:
-location1 = "37.4150,-122.2056"
-location2 = "37.3880,-122.2884"
-output_file = "results.csv"
-gridlabd_geodata_merge(location1, location2, output_file)
+# Read latitude and longitude from CSV files
+latitude = pd.read_csv('latitude.csv')
+longitude = pd.read_csv('longitude.csv')
+
+# Combine latitude and longitude into a coordinates array
+coordinates = list(zip(latitude['latitude'], longitude['longitude']))
+
+output_file='results.csv'
+# Convert coordinates to zip codes
+results = []
+for lat, lon in coordinates:
+    zipcode = gridlabd_geodata_merge(lat, lon, output_file)
+    if not zipcode:
+        zipcode = 'N/A'  # Assign a default value for missing zip codes
+    results.append((lat, lon, zipcode))

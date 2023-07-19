@@ -46,10 +46,10 @@ for lat, lon in coordinates:
         zipcode = 'N/A'  # Assign a default value for missing zip codes
     results.append((lat, lon, zipcode))
 
-results.to_csv('test.csv',index=False)
-
 # Create DataFrame from the results
 df = pd.DataFrame(results, columns=["latitude", "longitude", "zipcode"])
+
+df.to_csv('results.csv',index=False)
 
 # Read income data from CSV file
 income = pd.read_csv("income_CA.csv")

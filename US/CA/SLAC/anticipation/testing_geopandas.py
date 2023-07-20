@@ -27,6 +27,11 @@ def get_zipcode_geopandas(latitude_file, longitude_file, geojson_file, output_cs
 
         zipcodes.append(zipcode)
 
+# Create a new DataFrame with zip codes
+result_df = pd.DataFrame({'latitude': latitude_df['latitude'], 'longitude': longitude_df['longitude'], 'Zipcode': zipcodes})
+# Write the zip codes to a CSV file
+result_df.to_csv(output_csv_file, index=False)
+
 
 # Example usage:
 latitude_file = "latitude.csv"  # Replace with the path to your latitude CSV file
@@ -36,10 +41,6 @@ output_csv_file = "output_zipcodes.csv"  # Replace with the desired output CSV f
 
 get_zipcode_geopandas(latitude_file, longitude_file, geojson_file, output_csv_file)
 
-# Create a new DataFrame with zip codes
-result_df = pd.DataFrame({'latitude': latitude_df['latitude'], 'longitude': longitude_df['longitude'], 'Zipcode': zipcodes})
-# Write the zip codes to a CSV file
-result_df.to_csv(output_csv_file, index=False)
 
 
 

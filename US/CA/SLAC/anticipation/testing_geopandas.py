@@ -28,12 +28,13 @@ def get_zipcode_geopandas(latitude_file, longitude_file, geojson_file, output_cs
         zipcodes.append(zipcode)
 
     # Create a new DataFrame with zip codes
-    result_df = pd.DataFrame({'latitude': latitude_df['latitude'], 'longitude': longitude_df['longitude'], 'zipcode': zipcodes})
-    result_df.to_csv("zipcode_results.csv", index=False)
+    result_df = pd.DataFrame({'latitude': latitude_df['latitude'], 'longitude': longitude_df['longitude'], 'address': zipcodes})
 
-    # Read income data from CSV file
+    # Read income data from CSV file and merge with zipcodes
     income = pd.read_csv("income_CA.csv")
-    income.to_csv("income_results.csv", index=False)
+    merged_df=pd.merge(result_df, income, on="address", how="inner", sort=True)
+    merged_df.to_csv("merged_results.csv", index=False)
+    
 
 # Example usage:
 latitude_file = "latitude.csv"  # Replace with the path to your latitude CSV file

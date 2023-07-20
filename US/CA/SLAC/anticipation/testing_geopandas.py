@@ -8,7 +8,7 @@ def get_zipcode_geopandas(lat, lon, shapefile_path):
     # Check if the point is within any polygon (zipcode boundary)
     for idx, row in gdf.iterrows():
         if point.within(row['geometry']):
-            return row[{ZIP CODE}]
+            return row['ZIP Code']
     
     return ""
 # Example usage:

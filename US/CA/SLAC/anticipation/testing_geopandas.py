@@ -4,6 +4,8 @@ from shapely.geometry import Point
 def get_zipcode_geopandas(lat, lon, shapefile_path):
     point = Point(lon, lat)
     gdf = gpd.read_file(shapefile_path)
+    print(gdf.columns)
+    print(gdf.index)
 
     # Check if the point is within any polygon (zipcode boundary)
     for idx, row in gdf.iterrows():

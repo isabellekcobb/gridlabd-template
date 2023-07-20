@@ -19,6 +19,8 @@ class point
 	double contact;
 	double strike;
 	char1024 status;
+	double income;
+	
 }
 object pole_configuration
 {

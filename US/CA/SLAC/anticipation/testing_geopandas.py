@@ -13,6 +13,7 @@ def get_zipcode_geopandas(lat, lon, shapefile_path):
             return gdf['ZIP_CODE']
     
     return ""
+    
 # Example usage:
 latitude = 37.41504514168805
 longitude = -122.2056472090359

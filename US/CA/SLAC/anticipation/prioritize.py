@@ -28,6 +28,8 @@ sorted_csv_input = pd.concat([failed_rows, ok_rows])
 # and the "OK" status rows sorted by 'strike' in descending order, with "FAILED" ones above "OK" ones.
 sorted_csv_input.to_csv('prioritization.csv', index=False)
 
-# Save the highlighted DataFrame as an HTML file
-html_input = pd.concat([highlighted_failed_rows, ok_rows])
-html_input.to_html('prioritization.html', index=False)
+
+highlighted_failed_df = highlighted_failed_rows.data
+concatenated_df = pd.concat([highlighted_failed_df, ok_rows])
+export_filename = "prioritization.html"
+concatenated_df.to_html(export_filename, index=False)

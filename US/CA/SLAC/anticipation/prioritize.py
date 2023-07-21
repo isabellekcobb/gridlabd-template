@@ -11,7 +11,7 @@ failed_rows.sort_values(by='strike', ascending=False, inplace=True)
 lowest_income_value = failed_rows['income'].min()
 def highlight_row(row):
     # Create CSS styles for the entire row based on the "highlight" column
-    styles = ['background-color: yellow' if value=lowest_income_value]
+    styles = ['background-color: yellow' if failed_rows['income'][row] == lowest_income_value else '' for values in row]
     return styles
 
 # Use the apply method to apply the highlighting function row-wise to the DataFrame

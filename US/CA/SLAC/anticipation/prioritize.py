@@ -1,13 +1,10 @@
 import pandas as pd
 
-# Read the CSV file into a DataFrame
-csv_input = pd.read_csv('path_result_plot.csv')
+# Read the CSV file and use the 'status' column as the sort key
+csv_input = pd.read_csv('path_result_plot.csv', usecols=['position', 'latitude', 'longitude', 'linesag', 'linesway', 'contact', 'strike', 'status'])
 
-# Filter rows with 'FAILED' status
-failed_rows = csv_input[csv_input['status'] == 'FAILED']
+# Sort the DataFrame by the 'status' column in ascending order
+csv_input.sort_values(by='status', ascending=True, inplace=True)
 
-# Sort the failed_rows based on 'strike' column in descending order
-failed_rows_sorted = failed_rows.sort_values(by='strike', ascending=False)
-
-# Save the filtered rows to a new CSV file
-failed_rows_sorted.to_csv('failed_results_sorted.csv', index=False)
+# Now the 'csv_input' DataFrame will have rows with "FAILED" status at the top and "OK" status at the bottom
+csv_input.to_csv('sorted_path_result.csv', index=False)

@@ -17,10 +17,6 @@ def highlight_failed_rows(row):
 # Use the apply method to apply the highlighting function row-wise to the DataFrame
 highlighted_failed_rows = failed_rows.style.apply(highlight_failed_rows, axis=1)
 
-# Save the highlighted DataFrame as an HTML file
-with open('highlighted_failed_rows.html', 'w') as f:
-    f.write(highlighted_failed_rows.render())
-
 # Sort the DataFrame for "OK" status rows in descending order based on the 'strike' column
 ok_rows = csv_input[csv_input['status'] == 'OK']
 ok_rows.sort_values(by='strike', ascending=False, inplace=True)
@@ -31,3 +27,8 @@ sorted_csv_input = pd.concat([failed_rows, ok_rows])
 # Now the 'sorted_csv_input' DataFrame will have "FAILED" status rows sorted by 'strike' in descending order,
 # and the "OK" status rows sorted by 'strike' in descending order, with "FAILED" ones above "OK" ones.
 sorted_csv_input.to_csv('prioritization.csv', index=False)
+
+# Save the highlighted DataFrame as an HTML file
+html_input = pd.concat([highlighted_failed_rows, ok_rows])
+with open('prioritization.html', 'w') as f:
+    f.write(html_input.render())

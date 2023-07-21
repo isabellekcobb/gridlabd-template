@@ -8,7 +8,14 @@ failed_rows = csv_input[csv_input['status'] == 'FAILED']
 failed_rows.sort_values(by='strike', ascending=False, inplace=True)
 
 # Find the lowest income value and highlight failed_rows with that value
-failed_rows.style.highlight_min(color='yellow', axis=0)
+lowest_income_value = failed_rows['income'].min()
+def highlight_cells(value, color_true, color_false, criteria):
+ if value <= criteria:
+     color = color_true 
+ else:
+     color = color_false 
+ return 'background-color: {}'.format(color)
+failed_rows.style.applymap(highlight_cells, color_true = 'yellow', color_false = 'white', criteria = lowest_income_value)
 
 # Sort the DataFrame for "OK" status rows in descending order based on the 'strike' column
 ok_rows = csv_input[csv_input['status'] == 'OK']

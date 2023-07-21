@@ -30,5 +30,4 @@ sorted_csv_input.to_csv('prioritization.csv', index=False)
 
 # Save the highlighted DataFrame as an HTML file
 html_input = pd.concat([highlighted_failed_rows, ok_rows])
-with open('prioritization.html', 'w') as f:
-    f.write(html_input.render())
+html_input.to_html('prioritization.html', index=False)

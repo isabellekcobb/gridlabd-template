@@ -29,7 +29,11 @@ sorted_csv_input = pd.concat([failed_rows, ok_rows])
 sorted_csv_input.to_csv('prioritization.csv', index=False)
 
 
-highlighted_failed_df = highlighted_failed_rows.data
-concatenated_df = pd.concat([highlighted_failed_df, ok_rows])
+ok_rows_styler = ok_rows.style
+# Concatenate the Styler objects vertically
+concatenated_styler = pd.concat([highlighted_failed_rows, ok_rows_styler])
+
+# Export the concatenated Styler object
 export_filename = "prioritization.html"
-concatenated_df.to_html(export_filename, index=False)
+with open(export_filename, 'w') as file:
+    file.write(concatenated_styler.render())

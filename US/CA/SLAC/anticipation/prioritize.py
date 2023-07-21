@@ -10,4 +10,4 @@ failed_rows = csv_input[csv_input['status'] == 'FAILED']
 failed_rows_sorted = failed_rows.sort_values(by='strike', ascending=False)
 
 # Save the filtered rows to a new CSV file
-failed_rows.to_csv('failed_results.csv', index=False)
+failed_rows_sorted.to_csv('failed_results.csv', index=False)

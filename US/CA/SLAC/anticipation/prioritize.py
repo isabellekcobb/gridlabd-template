@@ -3,37 +3,36 @@ import pandas as pd
 # Read the CSV file and use the 'status' column as the sort key
 csv_input = pd.read_csv('path_result_plot.csv', usecols=['position', 'latitude', 'longitude', 'linesag', 'linesway', 'contact', 'strike', 'status','income'])
 
-# Sort the DataFrame for "FAILED" status rows in descending order based on the 'strike' column
-failed_rows = csv_input[csv_input['status'] == 'FAILED']
-failed_rows.sort_values(by='strike', ascending=False, inplace=True)
+strike = csv_input['strike']
+contact = csv_input['contact']
+income = csv_input['income']
 
-# Find the lowest income value and highlight failed_rows with that value
-lowest_income_value = failed_rows['income'].min()
-def highlight_failed_rows(row):
-    # Create an empty list to hold the styles for the entire row
-    styles = ['background-color: yellow' if row['income'] == lowest_income_value else '' for _ in row]
-    return styles
+strike_pts = pd.Series()
+# Iterate through all the values in strike, multiply them by 10, and append to the new Series
+for index, value in strike.items():
+    strike_pts[index] = value * 10
 
-# Use the apply method to apply the highlighting function row-wise to the DataFrame
-highlighted_failed_rows = failed_rows.style.apply(highlight_failed_rows, axis=1)
+contact_pts = pd.Series()
+# Iterate through all the values in contact, multiply them by 7, and append to the new Series
+for index, value in contact.items():
+    contact_pts[index] = value * 7
 
-# Sort the DataFrame for "OK" status rows in descending order based on the 'strike' column
-ok_rows = csv_input[csv_input['status'] == 'OK']
-ok_rows.sort_values(by='strike', ascending=False, inplace=True)
+# Find the highest income value 
+highest_income_value = income.max()
+income_pts = pd.Series()
+for index, value in income.items():
+    if value<=0.5*highest_income_value:
+        income_pts[index] = 5
+    elif value<=0.6*highest_income_value:
+        income_pts[index] = 4
+    elif value<=0.7*highest_income_value:
+        income_pts[index] = 3
+    else:
+        income_pts[index] = 0
 
-# Concatenate the sorted DataFrames to combine the "FAILED" and "OK" status rows
-sorted_csv_input = pd.concat([failed_rows, ok_rows])
+total_pts=strike_pts+contact_pts+income_pts
 
-# Now the 'sorted_csv_input' DataFrame will have "FAILED" status rows sorted by 'strike' in descending order,
-# and the "OK" status rows sorted by 'strike' in descending order, with "FAILED" ones above "OK" ones.
-sorted_csv_input.to_csv('prioritization.csv', index=False)
+# Append the total_pts to the path_result_plot file with a custom header
+total_pts.to_csv('path_result_plot.csv, header=['Criticality'], mode='a')
+    
 
-
-ok_rows_styler = ok_rows.style
-# Concatenate the Styler objects vertically
-concatenated_styler = pd.concat([highlighted_failed_rows, ok_rows_styler])
-
-# Export the concatenated Styler object
-export_filename = "prioritization.html"
-with open(export_filename, 'w') as file:
-    file.write(concatenated_styler.render())

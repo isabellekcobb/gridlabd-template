@@ -33,10 +33,11 @@ for index, value in income.items():
 
 total_pts=strike_pts+contact_pts+income_pts
 
-# Append the total_pts to the path_result_plot file with a custom header
-csv_input['Criticality'] = total_pts
+# Append the total_pts to the path_result_plot file with a custom header and sort by criticality
+csv_input['criticality'] = total_pts
+csv_sorted = csv_input.sort_values(by='criticality', ascending=False)
 
 # Write the updated DataFrame back to the CSV file, including the new column
-csv_input.to_csv('path_result_plot.csv', index=False)
+csv_sorted.to_csv('path_result_plot.csv', index=False)
     
 

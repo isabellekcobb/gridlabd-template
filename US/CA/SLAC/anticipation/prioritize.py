@@ -7,19 +7,20 @@ strike = csv_input['strike']
 contact = csv_input['contact']
 income = csv_input['income']
 
-strike_pts = pd.Series()
+length=len(csv_input['strike'])
+strike_pts = pd.Series(0, index=range(length))
 # Iterate through all the values in strike, multiply them by 10, and append to the new Series
 for index, value in strike.items():
     strike_pts[index] = value * 10
 
-contact_pts = pd.Series()
+contact_pts = pd.Series(0, index=range(length))
 # Iterate through all the values in contact, multiply them by 7, and append to the new Series
 for index, value in contact.items():
     contact_pts[index] = value * 7
 
 # Find the highest income value 
 highest_income_value = income.max()
-income_pts = pd.Series()
+income_pts = pd.Series(0, index=range(length))
 for index, value in income.items():
     if value<=0.5*highest_income_value:
         income_pts[index] = 5

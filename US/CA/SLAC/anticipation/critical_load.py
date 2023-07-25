@@ -7,7 +7,7 @@ gridlabd.command('network.glm')
 
 csv_input=pd.read_csv('path_result_plot.csv')
 services=[]
-def on_finalize():
+
   objects=gridlabd.get(object)
   for index,value in objects:
       if gridlabd.get_class(value)=='meter':

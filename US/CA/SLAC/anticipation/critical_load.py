@@ -7,7 +7,7 @@ gridlabd.command('network.glm')
 
 services=[]
 
-objects=gridlabd.get(object)
+objects=gridlabd.get('object')
 for index,value in objects:
   if gridlabd.get_class(value)=='meter':
     parent_obj=gridlabd.get_value(value,parent)

@@ -1,3 +1,3 @@
 import gridlabd
-data = gridlabd.get('meter','*')
-T = gridlabd.get_class(data,'service_level')
+data = gridlabd.get_value('meter','service_level')
+print(data)

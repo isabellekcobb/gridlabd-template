@@ -14,7 +14,7 @@ for index,value in objects:
     if gridlabd.get_class(parent_obj)=='pole':
       critical_level=gridlabd.get_value(value, service_level)
       services.append(critical_level)
-    elif:
+    else:
       services.append(0)
 
 services.to_csv('service_level.csv', index=False)

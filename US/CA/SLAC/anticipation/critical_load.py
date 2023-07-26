@@ -2,7 +2,7 @@ import pandas as pd
 import gridlabd
 
 
-def on_init():
+def on_term():
     gridlabd.command('network.glm')
     services = []
 

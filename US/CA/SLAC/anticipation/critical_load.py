@@ -25,10 +25,8 @@ def process_data():
 # Define a function to run the gridlabd command during the on_compile event
 def on_init():
     gridlabd.command('network.glm')
-
-# Register the process_data() function to run after the simulation is completed
-atexit.register(process_data)
-
-# Now, call the on_compile() function to initiate the process
+    process_data()
+    
+# Now, call the on_init() function to initiate the process
 on_init()
 

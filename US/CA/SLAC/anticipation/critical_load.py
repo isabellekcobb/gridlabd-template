@@ -22,6 +22,4 @@ def on_init():
     df = pd.DataFrame({'service level': services})
     df.to_csv('service_level.csv', index=False)
     
-# Now, call the on_init() function to initiate the process
-on_init()
 

@@ -2,8 +2,6 @@ import pandas as pd
 import gridlabd
 import atexit
 
-gridlabd.command('network.glm')
-
 # Define a function to process the data after the simulation is completed
 def process_data():
     services = []

@@ -1,9 +1,9 @@
 #set pythonpath=/usr/local/share/gridlabd/template/US/CA/SLAC/anticipation/
 module critical_load; 
 
-#define WEATHER=CA-San_Francisco_Intl_Ap
-#weather get ${WEATHER}.tmy3
-#input "${WEATHER}.tmy3"
+//#define WEATHER=CA-San_Francisco_Intl_Ap
+#weather get CA-San_Francisco_Intl_Ap.tmy3
+#input "CA-San_Francisco_Intl_Ap.tmy3"
 //module climate; 
 //object climate {
 //  tmyfile "${WEATHER}.tmy3";

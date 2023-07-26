@@ -1,3 +1,4 @@
+#set pythonpath=..:.
 module critical_load; 
 
 clock {

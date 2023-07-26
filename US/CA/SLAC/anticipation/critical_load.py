@@ -22,6 +22,6 @@ def on_term():
     df.to_csv('service_level.csv', index=False)
     print('Meter code ran fully')
 
-on_term()
+#on_term()
     
 

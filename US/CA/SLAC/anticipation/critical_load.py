@@ -7,7 +7,7 @@ def process_data():
     services = []
 
     # Use 'meter' as the type argument to get objects of the 'meter' class
-    objects = gridlabd.get('meter')
+    objects = gridlabd.get_class('meter')
 
     for index, value in objects.items():
         parent_obj = gridlabd.get_value(value, 'parent')

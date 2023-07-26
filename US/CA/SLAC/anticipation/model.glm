@@ -1,7 +1,16 @@
 #set pythonpath=/usr/local/share/gridlabd/template/US/CA/SLAC/anticipation/
 module critical_load; 
 
-clock {
-  starttime 2023-07-26 00:00:00; 
-  stoptime 2023-07-27 00:00:00;
+#define WEATHER=CA-San_Francisco_Intl_Ap
+#weather get ${WEATHER}.tmy3
+module climate; 
+object climate {
+  tmyfile ${WEATHER}.tmy3;
 }
+
+clock {
+  starttime "2023-07-26 00:00:00"; 
+  stoptime "2023-07-27 00:00:00";
+}
+
+

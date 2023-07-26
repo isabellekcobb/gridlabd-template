@@ -1,4 +1,4 @@
-#set pythonpath=..:.
+#set pythonpath=/usr/local/share/gridlabd/template/US/CA/SLAC/anticipation/
 module critical_load; 
 
 clock {

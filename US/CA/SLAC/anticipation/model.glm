@@ -3,10 +3,11 @@ module critical_load;
 
 #define WEATHER=CA-San_Francisco_Intl_Ap
 #weather get ${WEATHER}.tmy3
-module climate; 
-object climate {
-  tmyfile ${WEATHER}.tmy3;
-}
+#input "${WEATHER}"
+//module climate; 
+//object climate {
+//  tmyfile "${WEATHER}.tmy3";
+//}
 
 clock {
   starttime "2023-07-26 00:00:00"; 

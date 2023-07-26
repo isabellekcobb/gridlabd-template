@@ -1,7 +1,7 @@
 import pandas as pd
 import gridlabd
 
-def on_term():
+def on_init():
     #gridlabd.command('network.glm')
     #services = []
     

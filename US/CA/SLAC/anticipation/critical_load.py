@@ -1,8 +1,9 @@
 import pandas as pd
 import gridlabd
 
-# Define a function to process the data after the simulation is completed
-def process_data():
+
+def on_init():
+    gridlabd.command('network.glm')
     services = []
 
     # Use 'meter' as the type argument to get objects of the 'meter' class
@@ -20,11 +21,6 @@ def process_data():
     # Convert the 'services' list to a DataFrame and save it to a CSV file
     df = pd.DataFrame({'service level': services})
     df.to_csv('service_level.csv', index=False)
-
-# Define a function to run the gridlabd command during the on_compile event
-def on_init():
-    gridlabd.command('network.glm')
-    process_data()
     
 # Now, call the on_init() function to initiate the process
 on_init()

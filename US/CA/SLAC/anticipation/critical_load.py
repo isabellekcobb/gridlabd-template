@@ -1,6 +1,5 @@
 import pandas as pd
 import gridlabd
-import atexit
 
 # Define a function to process the data after the simulation is completed
 def process_data():

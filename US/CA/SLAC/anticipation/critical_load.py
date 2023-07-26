@@ -21,6 +21,7 @@ def on_init(t):
     #df = pd.DataFrame({'service level': services})
    # df.to_csv('service_level.csv', index=False)
     print('Meter code ran fully')
+    return True
 
     
 

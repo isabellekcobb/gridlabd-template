@@ -3,7 +3,7 @@ module critical_load;
 
 #define WEATHER=CA-San_Francisco_Intl_Ap
 #weather get ${WEATHER}.tmy3
-#input "${WEATHER}"
+#input "${WEATHER}.tmy3"
 //module climate; 
 //object climate {
 //  tmyfile "${WEATHER}.tmy3";

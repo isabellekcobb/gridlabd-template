@@ -1,4 +1,5 @@
 import pandas as pd
+import gridlabd
 
 gridlabd.command('network.glm')
 

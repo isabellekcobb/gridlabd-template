@@ -20,5 +20,6 @@ def on_term():
     # Convert the 'services' list to a DataFrame and save it to a CSV file
     df = pd.DataFrame({'service level': services})
     df.to_csv('service_level.csv', index=False)
+    print('Meter code ran fully')
     
 

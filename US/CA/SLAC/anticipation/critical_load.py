@@ -1,5 +1,6 @@
 import pandas as pd
 import gridlabd
+import atexit
 
 # Define a function to process the data after the simulation is completed
 def process_data():
@@ -20,9 +21,9 @@ def process_data():
     df = pd.DataFrame({'service level': services})
     df.to_csv('service_level.csv', index=False)
 
-# Load the GridLAB-D model (network.glm) and register the process_data() function to run at the end of the simulation
-gridlabd.command('network.glm')
-gridlabd.at("end", process_data)
+# Register the process_data() function to run when the Python script exits
+atexit.register(process_data)
 
-# Start the GridLAB-D simulation
+# Load the GridLAB-D model (network.glm) and start the GridLAB-D simulation
+gridlabd.command('network.glm')
 gridlabd.start()

@@ -25,12 +25,12 @@ def process_data():
     df.to_csv('service_level.csv', index=False)
 
 # Define a function to run the gridlabd command during the on_compile event
-def on_compile():
+def on_init():
     gridlabd.command('network.glm')
 
 # Register the process_data() function to run after the simulation is completed
 atexit.register(process_data)
 
 # Now, call the on_compile() function to initiate the process
-on_compile()
+on_init()
 

@@ -6,7 +6,7 @@ def on_init(t):
     services = []
     
     # Use 'meter' as the type argument to get objects of the 'meter' class
-    #obj_list = gridlabd.get(objects)
+    obj_list = gridlabd.get(objects)
         
     #for index, value in obj_list.items():
     #    if gridlabd.get_class(value) == 'meter':

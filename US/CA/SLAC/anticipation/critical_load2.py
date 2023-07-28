@@ -2,8 +2,8 @@ import pandas as pd
 import gridlabd
 
 def on_init(t):
-    #gridlabd.command('network.glm')
-    #services = []
+    gridlabd.command('network.glm')
+    services = []
     
     # Use 'meter' as the type argument to get objects of the 'meter' class
     #obj_list = gridlabd.get(objects)

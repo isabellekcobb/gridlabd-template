@@ -6,7 +6,7 @@ gridlabd.command('network.glm')
 services = []
     
     # Use 'meter' as the type argument to get objects of the 'meter' class
-obj_list = gridlabd.get_object('pole')
+obj_list = gridlabd.get_class('pole')
         
     #for index, value in obj_list.items():
     #    if gridlabd.get_class(value) == 'meter':

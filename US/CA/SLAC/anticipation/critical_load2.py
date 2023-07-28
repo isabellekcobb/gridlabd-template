@@ -1,9 +1,9 @@
 import pandas as pd
 import gridlabd
 
-def on_init(t):
-    gridlabd.command('network.glm')
-    services = []
+#def on_init(t):
+gridlabd.command('network.glm')
+services = []
     
     # Use 'meter' as the type argument to get objects of the 'meter' class
     obj_list = gridlabd.get(objects)
@@ -20,8 +20,8 @@ def on_init(t):
     # Convert the 'services' list to a DataFrame and save it to a CSV file
     #df = pd.DataFrame({'service level': services})
    # df.to_csv('service_level.csv', index=False)
-    print('Meter code ran fully')
-    return True
+print('Meter code ran fully')
+    # return True
 
     
 

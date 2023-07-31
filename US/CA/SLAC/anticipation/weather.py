@@ -12,7 +12,7 @@ def get_nsrdb_data(latitude, longitude):
         return None
 
 def main():
-    excel_file = 'locations.xlsx'
+    excel_file = 'gps.xlsx'
 
     # Replace 'Sheet1' with the name of the sheet containing the data
     df = pd.read_excel(excel_file)

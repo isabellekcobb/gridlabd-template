@@ -1,5 +1,4 @@
 import pandas as pd
-import pvlib
 import requests
 
 def get_nsrdb_data(latitude, longitude):

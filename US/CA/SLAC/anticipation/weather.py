@@ -12,10 +12,10 @@ def get_nsrdb_data(latitude, longitude):
         return None
 
 def main():
-    excel_file = 'test_xls-spida2csv-geodata.xls'
+    excel_file = 'locations.xlsx'
 
     # Replace 'Sheet1' with the name of the sheet containing the data
-    df = pd.read_excel(excel_file, sheet_name='Design - Pole')
+    df = pd.read_excel(excel_file)
     gps_points = df['GPS Point']
 
     for point in gps_points:

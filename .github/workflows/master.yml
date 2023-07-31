@@ -28,21 +28,3 @@ jobs:
         path: |
           validate.txt
           validate.tar.gz
-      
-      - name: Get NSRDB credentials
-      env:
-        NSRDB_CREDENTIAL: ${{ secrets.NSRDB_CREDENTIAL  }}
-      run: |
-        mkdir -p $HOME/.nsrdb
-        echo $NSRDB_CREDENTIAL > $HOME/.nsrdb/credentials.json
-
-    - name: Cache weather file
-      id: weather
-      uses: actions/cache@v3
-      with:
-        path: weather@9q8vq2.csv
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('weather@9q8vq2.csv') }}
-        restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-

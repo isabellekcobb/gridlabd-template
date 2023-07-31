@@ -15,12 +15,15 @@ def main():
     excel_file = 'gps.xlsx'
 
     # Replace 'Sheet1' with the name of the sheet containing the data
-    df = pd.read_excel(excel_file)
-    gps_points = df['GPS Point']
+    # df = pd.read_excel(excel_file)
+    # gps_points = df['GPS Point']
+
 
     for point in gps_points:
         # Split latitude and longitude from "latitude,longitude" string
-        latitude, longitude = map(float, point.split(','))
+        # latitude, longitude = map(float, point.split(','))
+        latitude=34.4002833340685
+        longitude=-116.962349732192
 
         # Get NSRDB data for the given latitude and longitude
         data = get_nsrdb_data(latitude, longitude)

@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 
 def get_nsrdb_data(latitude, longitude):
-    url = f'https://developer.nrel.gov/api/nsrdb/v2/solar/psm3-tmy2?api_key=9zS25U1TomaV3vQzgiAexB8eVaNV02HrrcmtBm0q&lat={latitude}&lon={longitude}&year=2022'
+    url = f'https://developer.nrel.gov/api/nsrdb/v2/solar/psm3-tmy2?api_key=MvtWm50sLgUCxfkZcgOfOLATc7cA6wo5fsxJ7b2y&lat={latitude}&lon={longitude}&year=2022'
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()

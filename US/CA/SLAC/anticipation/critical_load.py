@@ -16,7 +16,7 @@ def get_meter_objects(glm_file_path):
     return meter_objects
 
 def main():
-    glm_file_path = 'groups.glm'  # Replace this with the path to your .glm file
+    glm_file_path = '123.glm'  # Replace this with the path to your .glm file
 
     meter_objects = get_meter_objects(glm_file_path)
 

@@ -1,17 +1,14 @@
-import re
+import gridlabd
 
 def get_all_meters(glm_file_path):
     meter_names = []
     with open(glm_file_path, 'r') as f:
         glm_content = f.read()
-
-        # Use regular expression to find all meter objects
-        meter_pattern = r"object meter {\s*name (\w+);"
-        matches = re.findall(meter_pattern, glm_content)
-
-        for match in matches:
-            meter_name = match
-            meter_names.append(meter_name)
+        obj_list=gridlabd.get("objects")
+        for i in obj_list:
+            if gridlabd.get_value(i,"class")=="meter":
+                meter_names.append(i)
+        
 
     return meter_names
 

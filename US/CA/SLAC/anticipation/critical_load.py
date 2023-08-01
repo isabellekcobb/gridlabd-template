@@ -1,27 +1,31 @@
-import pandas as pd
-import gridlabd
+import re
 
-def on_init(t):
-    #gridlabd.command('network.glm')
-    #services = []
-    
-    # Use 'meter' as the type argument to get objects of the 'meter' class
-    #obj_list = gridlabd.get(objects)
-        
-    #for index, value in obj_list.items():
-    #    if gridlabd.get_class(value) == 'meter':
-    #        parent_obj = gridlabd.get_value(value, 'parent')
-    #        if gridlabd.get_class(parent_obj) == 'pole':
-    #            critical_level = gridlabd.get_value(value, 'service_level')
-     #           services.append(critical_level)
-      #      else:
-     #           services.append(0)
-    
-    # Convert the 'services' list to a DataFrame and save it to a CSV file
-    #df = pd.DataFrame({'service level': services})
-   # df.to_csv('service_level.csv', index=False)
-    print('Meter code ran fully')
-    return True
+def get_meter_objects(glm_file_path):
+    meter_objects = []
+    with open(glm_file_path, 'r') as f:
+        glm_content = f.read()
 
-    
+        # Use regular expression to find all meter objects with service_level
+        meter_pattern = r"object meter {\s*name (\w+);\s*service_level (HIGH|CRITICAL);"
+        matches = re.findall(meter_pattern, glm_content, re.MULTILINE)
 
+        for match in matches:
+            meter_name, service_level = match
+            meter_objects.append((meter_name, service_level))
+
+    return meter_objects
+
+def main():
+    glm_file_path = 'groups.glm'  # Replace this with the path to your .glm file
+
+    meter_objects = get_meter_objects(glm_file_path)
+
+    if meter_objects:
+        print("Meter objects with HIGH or CRITICAL service_level:")
+        for meter_name, service_level in meter_objects:
+            print(f"{meter_name}: {service_level}")
+    else:
+        print("No meter objects with HIGH or CRITICAL service_level found in the .glm file.")
+
+if __name__ == "__main__":
+    main()

@@ -2,10 +2,10 @@ import sys, os
 import json
 import csv
 
-def write_list_to_csv(data_list, file_name):
-    with open(file_name, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(data_list)
+def write_list_to_glm(data_list, file_name):
+    with open(file_name, mode='w') as file:
+        for item in data_list:
+            file.write(str(item) + '\n')
 	    
 def find_meters(input):
 	critical_meters = []
@@ -17,7 +17,7 @@ def find_meters(input):
 			if model['objects'][obj]['service_level']=='CRITICAL':
 				critical_meters.append(model['objects'][obj])
 				
-	write_list_to_csv(critical_meters,'critical_meters.csv')
+	write_list_to_glm(critical_meters,'critical_meters.glm')
 
 if __name__ == "__main__":
 	find_meters(sys.argv[1])

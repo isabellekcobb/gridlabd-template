@@ -1,36 +1,38 @@
-def get_meters(glm_file_path):
-    meters = []
-    with open(glm_file_path, 'r') as f:
-        inside_meter_block = False
-        for line in f:
-            line = line.strip()
-            if line.startswith("object meter {"):
-                inside_meter_block = True
-                meter = {}
-            elif inside_meter_block:
-                if line.startswith("name "):
-                    meter_name = line[len("name "):].rstrip(';')
-                    meter['name'] = meter_name
-                elif line.startswith("service_level "):
-                    service_level = line[len("service_level "):].rstrip(';')
-                    meter['service_level'] = service_level
-                elif line == "}":
-                    meters.append(meter)
-                    inside_meter_block = False
+def extract_meters(input_file_path, output_file_path):
+    critical_high_meters = []
 
-    return meters
+    with open(input_file_path, 'r') as input_file:
+        current_object = None
+        is_inside_meter = False
 
-def main():
-    glm_file_path = '123.glm'  # Replace this with the path to your .glm file
+        for line in input_file:
+            if line.strip().lower().startswith("object meter"):
+                is_inside_meter = True
+                current_object = {"object": "meter"}
 
-    meters = get_meters(glm_file_path)
+            if is_inside_meter:
+                parts = line.split('=')
+                if len(parts) == 2:
+                    key = parts[0].strip()
+                    value = parts[1].strip()
 
-    if meters:
-        print("List of meter objects in the .glm file:")
-        for meter in meters:
-            print(f"Name: {meter['name']}, Service Level: {meter['service_level']}")
-    else:
-        print("No meter objects found in the .glm file.")
+                    if key == "service_level" and value in ["CRITICAL", "HIGH"]:
+                        current_object[key] = value
+
+                    if key == "name":
+                        current_object[key] = value
+                        is_inside_meter = False
+                        critical_high_meters.append(current_object)
+
+    with open(output_file_path, 'w') as output_file:
+        for meter in critical_high_meters:
+            output_file.write("object meter;\n")
+            for key, value in meter.items():
+                output_file.write(f"  {key} = {value};\n")
+            output_file.write("\n")
 
 if __name__ == "__main__":
-    main()
+    input_file_path = "123.glm"
+    output_file_path = "critical_meters.glm"
+
+    extract_meters(input_file_path, output_file_path)

@@ -8,7 +8,7 @@ def find_meters(input):
 	
 	for obj,data in model['objects'].items():
 		if data['class'].endswith('meter'):
-			if model['objects'][obj]['service_level']=='CRITICAL'
+			if model['objects'][obj]['service_level']=='CRITICAL':
 				critical_meters.append(model['objects'][obj])
 
 	output_file_path = "critical_meters.glm"

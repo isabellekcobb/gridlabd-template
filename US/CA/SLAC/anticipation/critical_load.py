@@ -1,4 +1,4 @@
-def find_meters(input)
+def find_meters(input):
 	with open(input,"r") as fh:
 		model=json.load(fh)
 

@@ -3,7 +3,7 @@ import json
 import csv
 
 def write_list_to_glm(data_list, file_name):	
-    fieldnames = ['name', 'id', 'class', parent', 'latitude', 'longitude', 'service_level']
+    fieldnames = ['name', 'id', 'class', 'parent', 'latitude', 'longitude', 'service_level']
     with open(file_name, mode='w', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()

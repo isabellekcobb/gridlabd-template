@@ -2,13 +2,10 @@ import sys, os
 import json
 import csv
 
-def write_list_to_glm(data_list, file_name):	
-    fieldnames = ['name', 'id', 'class', 'parent', 'latitude', 'longitude', 'service_level']
-    with open(file_name, mode='w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
-        for meter in data_list:
-            writer.writerow(meter)
+def write_list_to_glm(data_list, file_name):
+    with open(file_name, mode='w') as file:
+        for item in data_list:
+            file.write(str(item) + '\n')
 	    
 def find_meters(input):
 	critical_meters = []

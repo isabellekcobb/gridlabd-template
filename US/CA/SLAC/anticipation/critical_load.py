@@ -14,7 +14,7 @@ def find_meters(input):
 	output_file_path = "critical_meters.glm"
 	with open(output_file_path, mode='w') as file:
     		for line in critical_meters:
-        		file.write(line + "\n")
+        		file.write(line)
 
 if __name__ == "__main__":
 	find_meters(sys.argv[1])

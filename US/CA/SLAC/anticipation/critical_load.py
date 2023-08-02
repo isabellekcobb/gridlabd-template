@@ -10,7 +10,8 @@ def find_meters(input):
 	
 	for obj,data in model['objects'].items():
 		print('check 5')
-		print(model['objects'][obj])
+		if data['class'].endswith('meter'):
+			print(model['objects'][obj])
 
 if __name__ == "__main__":
 	print('check 2')

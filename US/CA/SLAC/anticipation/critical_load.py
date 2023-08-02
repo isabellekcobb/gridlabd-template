@@ -1,11 +1,18 @@
-import gridlabd
+def critical_meters(input_file):
+	#
+	# Load model
+	#
+	with open(input_file,"r") as fh:
+		model = json.load(fh)
 
-def extract_meters(output_file_path):
-    critical_meters = gridlabd.get_class('meter')
-    critical_meters.to_csv='output_file_path.csv'
-   
+	#
+	# Check meter service_level
+	#
+        obj_list=[]
+		for obj,data in model['objects'].items():
+			obj_list.append(obj)
 
-if __name__ == "__main__":
-    gridlabd.command('123.glm')
-    output_file_path = "critical_meters.glm"
-    extract_meters(output_file_path)
+	obj_list.to_csv('objects.csv')
+
+
+critical_meters('123.json')

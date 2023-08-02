@@ -1,5 +1,4 @@
 def find_meters(input)
-	obj_lis = []
 	with open(input,"r") as fh:
 		model=json.load(fh)
 

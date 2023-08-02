@@ -10,6 +10,5 @@ USA_ZIP_Code_Boundaries.shp:a=rx
 prioritize.py:a=rx
 critical_load.py:a=rx
 model.glm:a=rx
-critical_load2.py:a=rx
 weather.py:a=rx
 group.py:a=rx

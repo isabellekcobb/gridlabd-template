@@ -1,5 +1,6 @@
 import sys, os
 import json
+import csv
 
 def find_meters(input):
 	critical_meters = []
@@ -11,10 +12,7 @@ def find_meters(input):
 			if model['objects'][obj]['service_level']=='CRITICAL':
 				critical_meters.append(model['objects'][obj])
 
-	output_file_path = "critical_meters.glm"
-	with open(output_file_path, mode='w') as file:
-    		for line in critical_meters:
-        		file.write(line)
+	critical_meters.to_csv('critical_meters.csv')
 
 if __name__ == "__main__":
 	find_meters(sys.argv[1])

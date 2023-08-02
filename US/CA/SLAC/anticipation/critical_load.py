@@ -5,6 +5,5 @@ def find_meters(input)
 	for obj,data in model['objects'].items():
 		print(model['objects'][obj]['name'])
 
-if __name__ == "__main__":
-	find_meters(sys.argv[1])
+find_meters(sys.argv[1])
 	

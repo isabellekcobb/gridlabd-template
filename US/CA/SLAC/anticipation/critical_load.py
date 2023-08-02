@@ -8,11 +8,11 @@ def critical_meters(input_file):
 	#
 	# Check meter service_level
 	#
-        obj_list=[]
+        	obj_list=[]
 		for obj,data in model['objects'].items():
 			obj_list.append(obj)
 
-	obj_list.to_csv('objects.csv')
+		obj_list.to_csv('objects.csv')
 
 
 critical_meters('123.json')

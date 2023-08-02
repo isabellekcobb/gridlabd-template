@@ -1,9 +1,11 @@
-def critical_meters(input_file):
-	with open(input_file,"r") as fh:
-		model = json.load(fh)
-        	obj_list = []
-		for obj,data in model['objects']['meter'].items():
-			obj_list.append(obj)
-		obj_list.to_csv('objects.csv')
+def find_meters(input)
+	obj_lis = []
+	with open(input,"r") as fh:
+		model=json.load(fh)
 
-critical_meters('123.json')
+	for obj,data in model['objects'].items():
+		print(model['objects'][obj])
+
+if __name__ == "__main__":
+	find_meters(sys.argv[1])
+	

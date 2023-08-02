@@ -1,5 +1,5 @@
 import gridlabd
-gridlabd.load('123.glm')
+gridlabd.command('123.glm')
 
 def extract_meters(output_file_path):
     critical_meters = gridlabd.get_class('meter')

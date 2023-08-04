@@ -7,7 +7,7 @@ def write_list_to_glm(data_list, file_name):
     with open(file_name, mode='w') as file:
         for item in data_list:
             file.write(str(item) + '\n')
-
+		
 def extract_objects(file_path, group_name):
     with open(file_path, 'r') as file:
         content = file.read()
@@ -24,21 +24,7 @@ def extract_objects(file_path, group_name):
     if group_name not in groups:
         raise ValueError(f"Group '{group_name}' not found in the .glm file.")
 
-    object_names = groups[group_name]
-
-    # Collect the data for each object
-    object_data = []
-    for obj_name in object_names:
-        # Use regex to find the object data
-        obj_pattern = rf'{obj_name}\s*{{([^}}]*)}}'
-        obj_match = re.search(obj_pattern, content)
-        if not obj_match:
-            raise ValueError(f"Object '{obj_name}' data not found in the .glm file.")
-
-        obj_data = obj_match.group(1)
-        object_data.append((obj_name, obj_data.strip()))  # Append (name, data) tuple to the list
-
-    return object_data
+    return groups[group_name]
 
 def find_island(node_name, file_path):
     with open(file_path, 'r') as file:
@@ -65,7 +51,6 @@ def find_island(node_name, file_path):
 def find_meters(input):
 	critical_meters = []
 	critical_objs = []
-	critical_poles = []
 	with open(input,"r") as fh:
 		model=json.load(fh)
 	
@@ -79,9 +64,3 @@ def find_meters(input):
 
 if __name__ == "__main__":
 	find_meters(sys.argv[1])
-
-
-
-
-
-	

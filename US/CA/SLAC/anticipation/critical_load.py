@@ -60,9 +60,8 @@ def find_meters(input):
 				critical_meters.append(model['objects'][obj])
 				critical_island=find_island(model['objects'][obj]['parent'], 'groups.glm')
 				objs=extract_objects('groups.glm', critical_island)
-				critical_objs.append(objs[data])
-				#for i in objs:
-					#critical_objs.append(model[i])
+				for i in objs:
+					critical_objs.append(model[i][data])
 	write_list_to_glm(critical_objs,'critical_objs.glm')
 
 if __name__ == "__main__":

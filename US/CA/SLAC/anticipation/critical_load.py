@@ -62,13 +62,9 @@ def find_meters(input):
 				critical_island=find_island(model['objects'][obj]['parent'], 'groups.glm')
 				objs=extract_objects('groups.glm', critical_island)
 		if 'name' in model['objects'][obj] and model['objects'][obj]['name'] == name:
-           		 matching_objects.append(model['objects'][obj])
-	
-		#for name in objs:
-			#if model['objects'][obj]['name']==name:
-				#critical_data.append(model['objects'][obj][data])
+           		 matching_objects.append(model['objects'][obj][data])
 				
-	#write_list_to_glm(critical_data, 'critical_data.glm')			
+	write_list_to_glm(matching_objects, 'critical_data.glm')			
 
 input_glm=sys.argv[1]
 if __name__ == "__main__":

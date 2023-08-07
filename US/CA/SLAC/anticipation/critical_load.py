@@ -47,33 +47,11 @@ def find_island(node_name, file_path):
     # If the node_name is not found in any group, it's not assigned to any island.
     return None
 
-import re
-
-def extract_object_data(file_path, object_names):
-    try:
-        with open(file_path, 'r') as file:
-            file_content = file.read()
-    except FileNotFoundError:
-        print(f"File not found: {file_path}")
-        return []
-
-    extracted_data = {}
-
-    for object_name in object_names:
-        regex = re.compile(rf"object\s+{object_name}\s*{{(.*?)}}", re.DOTALL)
-        match = regex.search(file_content)
-
-        if match:
-            object_data = match.group(1).strip()
-            extracted_data[object_name] = object_data
-        else:
-            print(f"Object not found: {object_name}")
-
-    return extracted_data
 
 def find_meters(input):
 	critical_meters = []
 	critical_objs = []
+	critical_data = []
 	with open(input,"r") as fh:
 		model=json.load(fh)
 	
@@ -83,10 +61,12 @@ def find_meters(input):
 				critical_meters.append(model['objects'][obj])
 				critical_island=find_island(model['objects'][obj]['parent'], 'groups.glm')
 				objs=extract_objects('groups.glm', critical_island)
-				critical_objs.append(objs)
-	return critical_objs
+				for name in objs:
+					if model['objects'][obj]['name']==name:
+						critical_data.append(model['objects'][obj][data])
+				
+	write_list_to_glm(critical_data, 'critical_data.glm')			
 
 input_glm=sys.argv[1]
 if __name__ == "__main__":
-	input_array=find_meters(input_glm)
-	extract_object_data(input_glm, input_array)
+	find_meters(input_glm)

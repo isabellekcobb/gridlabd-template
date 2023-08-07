@@ -50,8 +50,6 @@ def find_island(node_name, file_path):
 
 def find_meters(input):
 	critical_meters = []
-	critical_objs = []
-	matching_objects = []
 	with open(input,"r") as fh:
 		model=json.load(fh)
 	
@@ -62,9 +60,13 @@ def find_meters(input):
 				critical_island=find_island(model['objects'][obj]['parent'], 'groups.glm')
 				objs=extract_objects('groups.glm', critical_island)
 
-		return objs
-		if 'name' in model['objects'][obj] and model['objects'][obj]['name'] == name:
-           		 matching_objects.append(model['objects'][obj][data])
+	matching_objects = []
+	for i in objs:
+		name=model['objects'][objs[i]]
+	    	for obj in model['objects'].items():
+	        	if 'name' in model['objects'][obj] and model['objects'][obj]['name'] == name:
+	            		matching_objects.append(model['objects'][obj][data])
+	return matching_objects
 				
 	write_list_to_glm(matching_objects, 'critical_data.glm')			
 

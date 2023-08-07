@@ -62,7 +62,7 @@ def find_meters(input):
 
 	matching_objects = []
 	#for i in objs:
-	name=model['objects'][objs[i]]
+	name=model['objects'][objs[1]]
 	for obj,data in model['objects'].items():
 		if 'name' in model['objects'][obj] and model['objects'][obj]['name'] == name:
 	        	matching_objects.append(model['objects'][obj][data])

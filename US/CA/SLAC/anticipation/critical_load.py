@@ -63,5 +63,6 @@ def find_meters(input):
 				critical_objs.append(objs)
 	write_list_to_glm(critical_objs,'critical_objs.glm')
 
+input_glm=sys.argv[1]
 if __name__ == "__main__":
-	find_meters(sys.argv[1])
+	find_meters(input_glm)

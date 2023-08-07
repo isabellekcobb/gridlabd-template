@@ -50,6 +50,7 @@ def find_island(node_name, file_path):
 
 def find_meters(input):
 	critical_meters = []
+	objs = []
 	with open(input,"r") as fh:
 		model=json.load(fh)
 	

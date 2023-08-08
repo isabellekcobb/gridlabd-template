@@ -62,8 +62,7 @@ def find_meters(input):
 				objs.append(extract_objects('groups.glm', critical_island))
 
 	matching_objects = []
-	for index, obj in enumerate(objs):
-		print(model['objects'][objs[index]])
+	print(model['objects'][objs[1]])
 	
 	print('name should be above')		
 	# write_list_to_glm(matching_objects, 'critical_data.glm')			

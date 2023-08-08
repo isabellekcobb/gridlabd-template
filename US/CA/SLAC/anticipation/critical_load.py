@@ -62,7 +62,7 @@ def find_meters(input):
 				objs.append(extract_objects('groups.glm', critical_island))
 
 	matching_objects = []
-	for index, obj in enumerate(objs)
+	for index, obj in enumerate(objs):
 		matching_objects.append(model['objects'][objs[index]])
 	
 	print('name should be in the file')		

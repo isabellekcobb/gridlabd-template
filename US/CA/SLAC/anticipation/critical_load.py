@@ -63,10 +63,10 @@ def find_meters(input):
 
 	matching_objects = []
 	for index, obj in enumerate(objs):
-		matching_objects.append(model['objects'][objs[index]])
+		print(model['objects'][objs[index]])
 	
-	print('name should be in the file')		
-	write_list_to_glm(matching_objects, 'critical_data.glm')			
+	print('name should be above')		
+	# write_list_to_glm(matching_objects, 'critical_data.glm')			
 
 input_glm=sys.argv[1]
 if __name__ == "__main__":

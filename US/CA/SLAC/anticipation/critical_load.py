@@ -50,7 +50,6 @@ def find_island(node_name, file_path):
 
 def find_meters(input):
 	critical_meters = []
-	objs = []
 	with open(input,"r") as fh:
 		model=json.load(fh)
 	
@@ -59,14 +58,14 @@ def find_meters(input):
 			if model['objects'][obj]['service_level']=='CRITICAL':
 				critical_meters.append(model['objects'][obj])
 				critical_island=find_island(model['objects'][obj]['parent'], 'groups.glm')
-				objs.append(extract_objects('groups.glm', critical_island))
-	return objs
+				objs=extract_objects('groups.glm', critical_island)
+				return objs
 
 	# matching_objects = []
 	# name=model['objects'][objs[1]]
 	# return name
 	
-	print('name should be above')		
+	print('objs should be above')		
 	# write_list_to_glm(matching_objects, 'critical_data.glm')			
 
 input_glm=sys.argv[1]

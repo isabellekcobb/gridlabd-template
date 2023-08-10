@@ -58,7 +58,7 @@ def find_meters(input):
 			if model['objects'][obj]['service_level']=='CRITICAL':
 				critical_meters.append(model['objects'][obj])
 				critical_island=find_island(model['objects'][obj]['parent'], 'groups.glm')
-				# objs=extract_objects('groups.glm', critical_island)
+				objs=extract_objects('groups.glm', critical_island)
 				# return objs
 
 	# matching_objects = []

@@ -60,14 +60,11 @@ def find_meters(input):
 				critical_meters.append(model['objects'][obj])
 				critical_island=find_island(model['objects'][obj]['parent'], 'groups.glm')
 				critical_objs.append(extract_objects('groups.glm', critical_island))
-				
-
-	# matching_objects = []
-	# name=model['objects'][objs[1]]
-	return model['objects'][critical_objs[1]]
+		
 	
 	print('objs should be above')		
-	write_list_to_glm(critical_objs, 'critical_objs.glm')			
+	write_list_to_glm(critical_objs, 'critical_objs.glm')	
+	write_list_to_glm(critical_meters, 'critical_meters.glm')	
 
 if __name__ == "__main__":
 	find_meters(sys.argv[1])

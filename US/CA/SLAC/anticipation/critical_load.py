@@ -67,7 +67,7 @@ def find_meters(input):
 	# return name
 	
 	print('objs should be above')		
-	# write_list_to_glm(matching_objects, 'critical_data.glm')			
+	write_list_to_glm(critical_objs, 'critical_objs.glm')			
 
 if __name__ == "__main__":
 	find_meters(sys.argv[1])

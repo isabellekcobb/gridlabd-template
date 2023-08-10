@@ -64,7 +64,7 @@ def find_meters(input):
 
 	# matching_objects = []
 	# name=model['objects'][objs[1]]
-	# return name
+	return model['objects'][critical_objs[1]]
 	
 	print('objs should be above')		
 	write_list_to_glm(critical_objs, 'critical_objs.glm')			

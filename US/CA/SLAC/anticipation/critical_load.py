@@ -69,7 +69,7 @@ def find_meters(input):
 	write_list_to_glm(critical_objs,'critical_objs.glm')
 	write_list_to_glm(critical_data,'critical_data.glm')
 
-if _name_=="_main_":
+if __name__ == "__main__":
 	find_meters(sys.argv[1])
 						
 		

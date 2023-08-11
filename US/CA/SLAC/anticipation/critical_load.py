@@ -62,13 +62,13 @@ def find_meters(input):
 				critical_island=find_island(model['objects'][obj]['parent'], 'groups.glm')
 				critical_objs.append(extract_objects('groups.glm', critical_island))
 				for obj_properties in critical_objs:
-					print('work goddamn')
-    				key = tuple(obj_properties)
-    				if key in model['objects']:
-						print('this better work chanel')
-        				critical_data.append(model['objects'][key])
-    				else:
-        				print(f"Object not found: {key}")
+						print('work goddamn')
+    					key = tuple(obj_properties)
+    					if key in model['objects']:
+							print('this better work chanel')
+        					critical_data.append(model['objects'][key])
+    					else:
+        					print(f"Object not found: {key}")
 					
 
 	

@@ -25,7 +25,7 @@ def extract_objects(file_path,group_name):
 		raise ValueError(f"Group '{group_name}' not found in the .glm file.")
 	return groups[group_name]
 
-def find_island(node_name,file_path)
+def find_island(node_name,file_path):
 	with open(file_path,'r') as file:
 		content=file.read()
 	# Use regex to find the groups dictionary

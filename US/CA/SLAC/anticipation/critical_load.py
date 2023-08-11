@@ -63,6 +63,8 @@ def find_meters(input):
 				critical_objs.append(extract_objects('groups.glm', critical_island))
 				for obj_properties in critical_objs:
     					key = tuple(obj_properties)
+					if key in model['objects']:
+						print('this part works')
 					
 
 	

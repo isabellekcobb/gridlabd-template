@@ -63,9 +63,8 @@ def find_meters(input):
 					if key in model['objects']:
 						critical_data.append(model['objects'][key])
 					else:
-						print(f"Object not found: {key}")
+						print("is this the problem?")
 
-	print('pls pls pls work')
 	write_list_to_glm(critical_objs,'critical_objs.glm')
 	write_list_to_glm(critical_data,'critical_data.glm')
 

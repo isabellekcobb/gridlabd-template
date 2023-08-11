@@ -63,10 +63,7 @@ def find_meters(input):
 				critical_objs.append(extract_objects('groups.glm', critical_island))
 				for obj_properties in critical_objs:
     					key = tuple(obj_properties)
-					if key in model['objects']:
-				        	critical_data.append(model['objects'][key])
-					else:
-				        	print(f"Object not found: {key}")
+					
 
 	
 	print('objs should be above')		

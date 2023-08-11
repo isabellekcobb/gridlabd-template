@@ -61,7 +61,7 @@ def find_meters(input):
 				for obj_properties in critical_objs:
 					key=tuple(obj_properties)
 					if key in model['objects']:
-						critical_data.append(model['objects'][key]
+						critical_data.append(model['objects'][key])
 					else:
 						print(f"Object not found: {key}")
 

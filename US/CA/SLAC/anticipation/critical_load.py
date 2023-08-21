@@ -53,20 +53,27 @@ def find_meters(input):
 	with open(input,"r") as fh:
 		model=json.load(fh)
 
+	# find all objects attached to critical meter
 	for obj,data in model['objects'].items():
 		if data['class'].endswith('meter'):
 			if model['objects'][obj]['service_level']=='CRITICAL':
 				critical_meters.append(model['objects'][obj])
 				critical_island=find_island(model['objects'][obj]['parent'],'groups.glm')
 				critical_objs.append(extract_objects('groups.glm',critical_island))
-
+				
+	# extract data for all the critical objects
 	for obj in critical_objs:
 		for items in obj:
 			separated_objs.append(items)
 			critical_data.append(model['objects'][items])
+
+	# identify all critical objects that are poles
+	for obj,data in critical_data.items():
+		if data['class'].endswith('node'):
+			print('node found')
+		else:
+			print('node not found')
 	
-		
-	write_list_to_glm(separated_objs,'critical_objs.glm')
 	write_list_to_glm(critical_data,'critical_data.glm')
 
 if __name__ == "__main__":

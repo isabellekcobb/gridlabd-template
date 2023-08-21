@@ -66,7 +66,7 @@ def find_meters(input):
 			critical_data.append(model['objects'][items])
 	
 		
-	write_list_to_glm(critical_objs,'critical_objs.glm')
+	write_list_to_glm(separated_objs,'critical_objs.glm')
 	write_list_to_glm(critical_data,'critical_data.glm')
 
 if __name__ == "__main__":

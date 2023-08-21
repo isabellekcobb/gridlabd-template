@@ -66,7 +66,7 @@ def find_meters(input):
 		for items in obj:
 			separated_objs.append(items)
 			# only extract data for critical poles
-			if 'pole' in items:
+			if 'node' in items:
 				critical_data.append(model['objects'][items])
 				print('IT WORKED')
 	

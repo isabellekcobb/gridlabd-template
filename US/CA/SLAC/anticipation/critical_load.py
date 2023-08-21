@@ -61,7 +61,7 @@ def find_meters(input):
 
 	for obj,data in model['objects'].items():
 		for x in critical_objs:
-			print(x)
+			print(critical_objs[1])
 			if 'name' in data and data['name']==critical_objs[x]:
 				print('did it get here?')
 				critical_data.append(model['objects'][obj])

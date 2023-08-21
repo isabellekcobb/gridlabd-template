@@ -65,14 +65,11 @@ def find_meters(input):
 	for obj in critical_objs:
 		for items in obj:
 			separated_objs.append(items)
-			critical_data.append(model['objects'][items])
-
-	# identify all critical objects that are poles
-	for obj,data in critical_data.items():
-		if data['class'].endswith('node'):
-			print('node found')
-		else:
-			print('node not found')
+			# only extract data for critical poles
+			if 'pole' in items
+				critical_data.append(model['objects'][items])
+				print('IT WORKED')
+	
 	
 	write_list_to_glm(critical_data,'critical_data.glm')
 

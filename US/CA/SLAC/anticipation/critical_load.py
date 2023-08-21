@@ -65,6 +65,7 @@ def find_meters(input):
 				print('did it get here?')
 				critical_data.append(model['objects'][obj])
 	for x in critical_objs:
+		print('pls fucking work')
 		critical_data.append(model['objects'][x])
 		
 

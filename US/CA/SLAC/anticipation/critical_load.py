@@ -60,7 +60,7 @@ def find_meters(input):
 				critical_objs.append(extract_objects('groups.glm',critical_island))
 	for obj,data in model['objects'].items():
 		for x in critical_objs:
-			#if 'name' in data and data['name']==critical_objs[x]:
+			if 'name' in data and data['name']==critical_objs[x]:
 			critical_data.append(model['objects'][obj])
 		
 

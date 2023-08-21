@@ -59,7 +59,7 @@ def find_meters(input):
 				critical_island=find_island(model['objects'][obj]['parent'],'groups.glm')
 				critical_objs.append(extract_objects('groups.glm',critical_island))
 
-	for obj in critical_objs
+	for obj in critical_objs:
 		items = obj.split(',')
 		print(items)
 		

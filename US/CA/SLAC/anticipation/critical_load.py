@@ -61,14 +61,12 @@ def find_meters(input):
 
 	for obj,data in model['objects'].items():
 		for x in critical_objs:
+			print(x)
 			if 'name' in data and data['name']==critical_objs[x]:
 				print('did it get here?')
 				critical_data.append(model['objects'][obj])
-	for x in critical_objs:
-		print('pls fucking work')
-		critical_data.append(model['objects'][x])
+	
 		
-
 	write_list_to_glm(critical_objs,'critical_objs.glm')
 	write_list_to_glm(critical_data,'critical_data.glm')
 

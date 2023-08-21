@@ -49,6 +49,7 @@ def find_meters(input):
 	critical_meters=[]
 	critical_objs=[]
 	critical_data=[]
+	separated_objs=[]
 	with open(input,"r") as fh:
 		model=json.load(fh)
 
@@ -61,11 +62,11 @@ def find_meters(input):
 
 	for obj in critical_objs:
 		for items in obj:
-			print(items)
+			separated_objs.append(items)
 		
 	for obj,data in model['objects'].items():
-		for x in critical_objs:
-			if 'name' in data and data['name']==critical_objs[x]:
+		for x in separated_objs:
+			if 'name' in data and data['name']==separated_objs[x]:
 				print('did it get here?')
 				critical_data.append(model['objects'][obj])
 	

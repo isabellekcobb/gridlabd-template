@@ -68,7 +68,6 @@ def find_meters(input):
 			# only extract data for critical poles
 			if 'pole' in items:
 				critical_data.append(model['objects'][items])
-				print('IT WORKED')
 	
 	
 	write_list_to_glm(critical_data,'critical_data.glm')

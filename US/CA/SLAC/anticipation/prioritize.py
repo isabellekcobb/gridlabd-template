@@ -31,7 +31,17 @@ for index, value in income.items():
     else:
         income_pts[index] = 0
 
-total_pts=strike_pts+contact_pts+income_pts
+load_pts = pd.Series(0, index=range(length))
+csv_input['critical load'] = [False] * length
+
+loads = csv_input['critical load']
+# Assign poles attached to critical loads a critical value of 5, leave all others with zero point value
+for index, value in loads.items():
+    if value == True:
+        load_pts[index]=5
+    
+
+total_pts=strike_pts+contact_pts+income_pts+load_pts
 
 # Append the total_pts to the path_result_plot file with a custom header and sort by criticality
 csv_input['criticality'] = total_pts
